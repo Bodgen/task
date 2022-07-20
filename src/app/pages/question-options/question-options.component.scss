@@ -1,0 +1,20 @@
+.options-container {
+
+  &-content {
+    display: flex;
+    flex-direction: column;
+
+    &-option {
+      display: flex;
+      justify-content: space-between;
+
+      &-delete {
+        padding-top: 10px;
+      }
+    }
+  }
+}
+
+.form-group {
+  width: 80%;
+}

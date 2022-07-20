@@ -1,0 +1,47 @@
+<div class="edit-container">
+  <div class="edit-container-header">
+    <div class="edit-container-header-back">
+      <button mat-raised-button routerLink='' routerLinkActive="active-link">Back to management</button>
+    </div>
+
+    <div class="edit-container-header-title">
+      {{ isEdit ? 'Edit ' : 'Create '}} question
+    </div>
+  </div>
+
+  <div class="edit-container-content">
+    <div class="edit-container-content-types">
+      <label id="example-radio-group-label">Pick question type</label>
+    </div>
+
+    <ng-container >
+      <div class="edit-container-content-question">
+        <form [formGroup]="questionForm" class="">
+          <mat-radio-group formControlName="type"
+                           aria-labelledby="example-radio-group-label"
+                           class="edit-container-content-types-group"
+          >
+            <mat-radio-button class="example-radio-button" *ngFor="let type of types" [value]="type.value">
+              {{ type.value }}
+            </mat-radio-button>
+          </mat-radio-group>
+
+          <div class="edit-container-content-question-text">
+            <mat-form-field class="form-group-text">
+              <textarea matInput placeholder="Text" class="form-control" formControlName="text"></textarea>
+            </mat-form-field>
+          </div>
+
+          <app-question-options [questionType]="questionForm.controls['type'].value" [optionForm]="questionForm"></app-question-options>
+<!--          <app-question-options [questionType]="questionForm.controls['type'].value" [optionFormArray]="questionForm.controls['options']"></app-question-options>-->
+
+          <div class="edit-container-content-question-submit">
+            <button mat-raised-button class="btn btn-default" [disabled]="questionForm.invalid" routerLink="" (click)="submit()">
+              {{ this.isEdit ? 'Edit' : 'Create'}}
+            </button>
+          </div>
+        </form>
+      </div>
+    </ng-container>
+  </div>
+</div>
